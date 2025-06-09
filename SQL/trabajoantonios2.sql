@@ -40,3 +40,5 @@ INSERT INTO Usuarios (uuid, nombre, contrasena) VALUES
 INSERT INTO Coche (marca, modelo, matricula, anio) VALUES
 ('Toyota', 'Corolla', '1234ABC', 2015),
 ('Ford', 'Focus', '5678DEF', 2018);
+
+SELECT* from Coche;

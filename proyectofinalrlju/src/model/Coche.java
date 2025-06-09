@@ -1,11 +1,16 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Coche {
     private int id;
     private String marca;
     private String modelo;
     private String matricula;
     private int anio;
+	private String nombre;
+	private ArrayList gastos;
 
     public Coche(int id, String marca, String modelo, String matricula, int anio) {
         this.id = id;
@@ -35,4 +40,30 @@ int getId() { return id; }
 		return null;
 	}
 
-	}
+	
+
+
+    public Coche(String nombre) {
+        this.nombre = nombre;
+        this.gastos = new ArrayList<>();
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void añadirGasto(String gasto) {
+        List<String> gastos = null;
+		gastos.add(gasto);
+    }
+
+    public List<String> getGastos() {
+        return getGastos();
+    }
+}
+
+

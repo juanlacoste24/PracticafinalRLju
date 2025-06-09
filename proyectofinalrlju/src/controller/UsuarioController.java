@@ -1,58 +1,41 @@
 package controller;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
-
-import model.Usuario;
-import util.ConexionDB;
+import model.Usuariomodelo;
 
 public class UsuarioController {
+	   private Usuariomodelo modelo;
    
-    public static boolean registrarUsuario(Usuario usuario) throws ClassNotFoundException {
-        try (Connection conn = ConexionDB.conectar()) {
-            String sql = "INSERT INTO usuarios (uuid, nombre, contrasena) VALUES (?, ?, ?)";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, usuario.getUuid());
-            stmt.setString(2, usuario.getNombre());
-            stmt.setString(3, usuario.getContrasena());
-            stmt.executeUpdate();
-            return true;
-        } catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("Nombre duplicado. Registro fallido.");
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+
+ 
+
+     
+
+        public UsuarioController() throws SQLException, ClassNotFoundException {
+            this.modelo = new Usuariomodelo();
         }
-        return false;
-    }
 
-  
-    public static boolean iniciarSesion(String nombre, String contrasena) throws ClassNotFoundException {
-        try (Connection conn = ConexionDB.conectar()) {
-            String sql = "SELECT * FROM usuarios WHERE nombre = ? AND contrasena = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-          
-			stmt.setString(1, nombre);
-            stmt.setString(2, contrasena);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-              
-                return true;
-            } else {
-              
-                System.out.println("Credenciales inválidas. Intenta de nuevo.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        public void añadirCoche(String cocheNombre) {
+            modelo.añadirCoche(cocheNombre);
         }
-        return false;
-    }
 
-   
-    public void start() {
-        // TODO Auto-generated method stub
-    }
+        public void editarCoche(int index, String nuevoCoche) {
+            modelo.editarCoche(index, nuevoCoche);
+        }
+
+        public void eliminarCoche(int index) {
+            modelo.eliminarCoche(index);
+        }
+
+        public void verCoche(int index) {
+            modelo.verCoche(index);
+        }
+
+        public void verGastosCoche(int index) {
+            modelo.verGastosCoche(index);
+        }
+    
+
 }
+
