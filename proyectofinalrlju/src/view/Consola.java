@@ -46,6 +46,8 @@ public class Consola {
                     try {
                         if (UsuarioController.iniciarSesion(nombreLogin, passLogin)) {
                             System.out.println("Inicio de sesión exitoso. Bienvenido, " + nombreLogin + "!");
+                            Usuariovista.menu();
+                           
                         } else {
                             System.out.println("Error al iniciar sesión. Verifica tus credenciales.");
                         }
