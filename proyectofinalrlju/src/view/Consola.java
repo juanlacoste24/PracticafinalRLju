@@ -8,21 +8,61 @@ import java.util.Scanner;
 public class Consola {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Introduce tu nombre: ");
-        String nombre = sc.nextLine();
-        System.out.print("Introduce tu contraseña: ");
-        String pass = sc.nextLine();
+        boolean exit = false;
 
-        Usuario u = new Usuario(nombre, pass);
-        try {
-			if (UsuarioController.registrarUsuario(u)) {
-			    System.out.println("Registro exitoso. UUID: " + u.getUuid());
-			} else {
-			    System.out.println("Error al registrar usuario.");
-			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        while (!exit) {
+            System.out.println("Seleccione una opción:");
+            System.out.println("1. Registrarse");
+            System.out.println("2. Iniciar sesión");
+            System.out.println("3. Salir");
+            int opcion = sc.nextInt();
+            sc.nextLine(); 
+
+            switch (opcion) {
+                case 1: 
+                    System.out.print("Introduce tu nombre: ");
+                    String nombreRegistro = sc.nextLine();
+                    System.out.print("Introduce tu contraseña: ");
+                    String passRegistro = sc.nextLine();
+                    
+                    Usuario nuevoUsuario = new Usuario(nombreRegistro, passRegistro);
+                    try {
+                        if (UsuarioController.registrarUsuario(nuevoUsuario)) {
+                            System.out.println("Registro exitoso. UUID: " + nuevoUsuario.getUuid());
+                        } else {
+                            System.out.println("Error al registrar usuario.");
+                        }
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case 2: 
+                    System.out.print("Introduce tu nombre: ");
+                    String nombreLogin = sc.nextLine();
+                    System.out.print("Introduce tu contraseña: ");
+                    String passLogin = sc.nextLine();
+                    
+                    try {
+                        if (UsuarioController.iniciarSesion(nombreLogin, passLogin)) {
+                            System.out.println("Inicio de sesión exitoso. Bienvenido, " + nombreLogin + "!");
+                        } else {
+                            System.out.println("Error al iniciar sesión. Verifica tus credenciales.");
+                        }
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case 3: 
+                    exit = true;
+                    System.out.println("Saliendo del programa. ¡Hasta luego!");
+                    break;
+
+                default:
+                    System.out.println("Opción no válida. Intenta nuevamente.");
+            }
+        }
+        sc.close();
     }
 }
