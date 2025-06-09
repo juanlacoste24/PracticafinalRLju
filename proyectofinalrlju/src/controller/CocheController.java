@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CocheController {
-    public static boolean crearCoche(Coche coche, String usuarioUuid) {
+    public static boolean crearCoche(Coche coche, String usuarioUuid) throws ClassNotFoundException {
         try (Connection conn = ConexionDB.conectar()) {
             String sql = "INSERT INTO coches (marca, modelo, matricula, anio) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -34,7 +34,7 @@ public class CocheController {
         return false;
     }
 
-    public static List<Coche> obtenerCochesDeUsuario(String usuarioUuid) {
+    public static List<Coche> obtenerCochesDeUsuario(String usuarioUuid) throws ClassNotFoundException {
         List<Coche> coches = new ArrayList<>();
         try (Connection conn = ConexionDB.conectar()) {
             String sql = "SELECT c.* FROM coches c JOIN usuarios_coches uc ON c.id = uc.coche_id WHERE uc.usuario_uuid = ?";

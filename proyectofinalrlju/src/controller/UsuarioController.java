@@ -6,7 +6,7 @@ import util.ConexionDB;
 import java.sql.*;
 
 public class UsuarioController {
-    public static boolean registrarUsuario(Usuario usuario) {
+    public static boolean registrarUsuario(Usuario usuario) throws ClassNotFoundException {
         try (Connection conn = ConexionDB.conectar()) {
             String sql = "INSERT INTO usuarios (uuid, nombre, contrasena) VALUES (?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);

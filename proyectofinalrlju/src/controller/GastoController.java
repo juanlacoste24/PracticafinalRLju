@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GastoController {
-    public static boolean agregarGasto(Gasto gasto) {
+    public static boolean agregarGasto(Gasto gasto) throws ClassNotFoundException {
         try (Connection conn = ConexionDB.conectar()) {
             String sql = "INSERT INTO gastos (coche_id, tipo, kilometraje, fecha, importe, descripcion) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -27,7 +27,7 @@ public class GastoController {
         return false;
     }
 
-    public static List<Gasto> obtenerGastosDeCoche(int cocheId) {
+    public static List<Gasto> obtenerGastosDeCoche(int cocheId) throws ClassNotFoundException {
         List<Gasto> lista = new ArrayList<>();
         try (Connection conn = ConexionDB.conectar()) {
             String sql = "SELECT * FROM gastos WHERE coche_id = ?";

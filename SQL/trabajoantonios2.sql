@@ -1,11 +1,12 @@
+DROP DATABASE IF EXISTS practicafinalrlju;
+CREATE DATABASE practicafinalrlju;
+USE practicafinalrlju;
 
-CREATE DATABASE IF NOT EXISTS ControlGastosCoches;
-USE ControlGastosCoches;
 
-
-CREATE TABLE Usuario (
+CREATE TABLE usuarios (
     uuid CHAR(36) PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL UNIQUE
+    nombre VARCHAR(100) NOT NULL UNIQUE,
+    contrasena VARCHAR(255) NOT NULL 
 );
 
 
@@ -18,13 +19,6 @@ CREATE TABLE Coche (
 );
 
 
-CREATE TABLE Usuario_Coche (
-    uuid_usuario CHAR(36),
-    id_coche INT,
-    PRIMARY KEY (uuid_usuario, id_coche),
-    FOREIGN KEY (uuid_usuario) REFERENCES Usuario(uuid) ON DELETE CASCADE,
-    FOREIGN KEY (id_coche) REFERENCES Coche(id) ON DELETE CASCADE
-);
 
 
 CREATE TABLE Gasto (
@@ -38,12 +32,11 @@ CREATE TABLE Gasto (
     FOREIGN KEY (id_coche) REFERENCES Coche(id) ON DELETE CASCADE
 );
 
-INSERT INTO Usuario (uuid, nombre) VALUES 
-(UUID(), 'Juan'),
-(UUID(), 'David');
 
+INSERT INTO Usuarios (uuid, nombre, contrasena) VALUES
+(UUID(), 'Juan', '1234'),
+(UUID(), 'David', 'abcd');
 
 INSERT INTO Coche (marca, modelo, matricula, anio) VALUES
 ('Toyota', 'Corolla', '1234ABC', 2015),
 ('Ford', 'Focus', '5678DEF', 2018);
-

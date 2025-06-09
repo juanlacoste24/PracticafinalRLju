@@ -14,10 +14,15 @@ public class Consola {
         String pass = sc.nextLine();
 
         Usuario u = new Usuario(nombre, pass);
-        if (UsuarioController.registrarUsuario(u)) {
-            System.out.println("Registro exitoso. UUID: " + u.getUuid());
-        } else {
-            System.out.println("Error al registrar usuario.");
-        }
+        try {
+			if (UsuarioController.registrarUsuario(u)) {
+			    System.out.println("Registro exitoso. UUID: " + u.getUuid());
+			} else {
+			    System.out.println("Error al registrar usuario.");
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

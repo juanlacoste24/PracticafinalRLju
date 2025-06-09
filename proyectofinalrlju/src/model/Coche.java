@@ -14,10 +14,25 @@ public class Coche {
         this.matricula = matricula;
         this.anio = anio;
     }
-
-    public int getId() { return id; }
+ public Coche(int id2, String brand, String model, float consume, int emissions, String imagen) {
+		// TODO Auto-generated constructor stub
+	}
+int getId() { return id; }
     public String getMarca() { return marca; }
     public String getModelo() { return modelo; }
     public String getMatricula() { return matricula; }
     public int getAnio() { return anio; }
-}
+	public float getConsume() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public int getEmissions() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public String getImagen() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	}
