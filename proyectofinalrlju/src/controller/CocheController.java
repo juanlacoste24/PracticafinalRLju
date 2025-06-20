@@ -1,11 +1,12 @@
 package controller;
 
-import model.Coche;
 import util.ConexionDB;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.entities.Coche;
 
 public class CocheController {
     public static boolean crearCoche(Coche coche, String usuarioUuid) throws ClassNotFoundException {

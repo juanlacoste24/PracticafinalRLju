@@ -1,9 +1,11 @@
 package controller;
 
-import model.Usuario;
 import util.ConexionDB;
 
 import java.sql.*;
+
+import model.entities.Coche;
+import model.entities.Usuario;
 
 public class UsuarioController {
     private static final String ID = null;
@@ -54,24 +56,33 @@ public class UsuarioController {
   
         System.out.println("Coche eliminado en índice: " + index);
     }
-
-    public boolean verCoche(int index) throws ClassNotFoundException {
-    	 try (Connection conn = ConexionDB.conectar()) {
-             String sql = "SELECT * FROM Coche WHERE ID = ? ";
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             stmt.setString(1, ID);
-             ResultSet rs = stmt.executeQuery();
-             return rs.next();
-         } catch (SQLException e) {
-             e.printStackTrace();
-         }
-         return false;
-    }
-    {
-        System.out.println("Mostrando coche en índice: " + index);
-
-    }
+ 
+    public Coche verCoche(int index) throws ClassNotFoundException {
+        Coche coche = null; 
+        try (Connection conn = ConexionDB.conectar()) {
+            String sql = "SELECT * FROM Coche WHERE ID = ? ";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, index);
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next()) {
     
+                int id = rs.getInt("ID");
+                String marca = rs.getString("Marca");
+                String modelo = rs.getString("Modelo");
+       
+                
+                coche = new Coche(id, marca, modelo, id, id, modelo);
+            }
+            
+            rs.close(); 
+            stmt.close(); 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return coche; 
+    }
+
     public void verGastosCoche(int index) {
       
         System.out.println("Mostrando gastos del coche en índice: " + index);

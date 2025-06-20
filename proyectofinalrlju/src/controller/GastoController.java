@@ -1,12 +1,13 @@
 package controller;
 
-import model.Gasto;
 import util.ConexionDB;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.entities.Gasto;
 
 public class GastoController {
     public static boolean agregarGasto(Gasto gasto) throws ClassNotFoundException {

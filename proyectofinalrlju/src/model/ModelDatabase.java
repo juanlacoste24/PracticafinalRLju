@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.entities.Coche;
 import util.ConexionDB;
 
 public class ModelDatabase implements IModel {

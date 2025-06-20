@@ -8,6 +8,8 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.entities.Coche;
+import model.entities.Usuario;
 import util.ConexionDB;
 
 public class Usuariomodelo {
