@@ -1,7 +1,7 @@
 package model.entities;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Coche {
     private int id;
@@ -9,8 +9,7 @@ public class Coche {
     private String modelo;
     private String matricula;
     private int anio;
-	private String nombre;
-	private ArrayList gastos;
+    private List<Gasto> gastos;
 
     public Coche(int id, String marca, String modelo, String matricula, int anio) {
         this.id = id;
@@ -18,52 +17,52 @@ public class Coche {
         this.modelo = modelo;
         this.matricula = matricula;
         this.anio = anio;
+        this.gastos = new ArrayList<>();
     }
- public Coche(int id2, String brand, String model, float consume, int emissions, String imagen) {
+
+    public Coche(int id2, String marca2, String modelo2, float consume, int id4, String modelo3) {
 		// TODO Auto-generated constructor stub
 	}
-public int getId() { return id; }
+
+	// Getters
+    public int getId() { return id; }
     public String getMarca() { return marca; }
     public String getModelo() { return modelo; }
     public String getMatricula() { return matricula; }
     public int getAnio() { return anio; }
+    public List<Gasto> getGastos() { return gastos; }
+
+    // Setters
+    public void setMarca(String marca) { this.marca = marca; }
+    public void setModelo(String modelo) { this.modelo = modelo; }
+    public void setMatricula(String matricula) { this.matricula = matricula; }
+    public void setAnio(int anio) { this.anio = anio; }
+    public void agregarGasto(Gasto gasto) { this.gastos.add(gasto); }
+
+	public void setNombre(String nuevoCoche) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String getNombre() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public float getConsume() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 	public int getEmissions() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 	public String getImagen() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	
-
-
-    public Coche(String nombre) {
-        this.nombre = nombre;
-        this.gastos = new ArrayList<>();
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void añadirGasto(String gasto) {
-        List<String> gastos = null;
-		gastos.add(gasto);
-    }
-
-    public List<String> getGastos() {
-        return getGastos();
-    }
 }
-
-

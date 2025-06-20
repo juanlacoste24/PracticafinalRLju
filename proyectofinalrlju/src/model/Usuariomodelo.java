@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.entities.Coche;
+import model.entities.Gasto;
 import model.entities.Usuario;
 import util.ConexionDB;
 
@@ -60,7 +61,7 @@ public class Usuariomodelo {
         return false;
     }
     public void añadirCoche(String cocheNombre) {
-        coches.add(new Coche(cocheNombre));
+        coches.add(new Coche(0, cocheNombre, cocheNombre, cocheNombre, 0));
         System.out.println("Coche añadido: " + cocheNombre);
     }
 
@@ -98,7 +99,7 @@ public class Usuariomodelo {
             if (coche.getGastos().isEmpty()) {
                 System.out.println("No hay gastos registrados.");
             } else {
-                for (String gasto : coche.getGastos()) {
+                for (Gasto gasto : coche.getGastos()) {
                     System.out.println("- " + gasto);
                 }
             }
