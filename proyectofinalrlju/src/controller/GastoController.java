@@ -30,7 +30,7 @@ public class GastoController {
     public static List<Gasto> obtenerGastosDeCoche(int cocheId) throws ClassNotFoundException {
         List<Gasto> lista = new ArrayList<>();
         try (Connection conn = ConexionDB.conectar()) {
-            String sql = "SELECT * FROM gastos WHERE coche_id = ?";
+            String sql = "SELECT * FROM gastos WHERE coche_id = ? ORDER BY fecha DESC";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, cocheId);
             ResultSet rs = stmt.executeQuery();
@@ -49,5 +49,34 @@ public class GastoController {
             e.printStackTrace();
         }
         return lista;
+    }
+
+    public static boolean actualizarGasto(Gasto gasto) throws ClassNotFoundException {
+        try (Connection conn = ConexionDB.conectar()) {
+            String sql = "UPDATE gastos SET tipo = ?, kilometraje = ?, fecha = ?, importe = ?, descripcion = ? WHERE id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, gasto.getTipo());
+            stmt.setInt(2, gasto.getKilometraje());
+            stmt.setDate(3, Date.valueOf(gasto.getFecha()));
+            stmt.setDouble(4, gasto.getImporte());
+            stmt.setString(5, gasto.getDescripcion());
+            stmt.setInt(6, gasto.getId());
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean eliminarGasto(int gastoId) throws ClassNotFoundException {
+        try (Connection conn = ConexionDB.conectar()) {
+            String sql = "DELETE FROM gastos WHERE id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, gastoId);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

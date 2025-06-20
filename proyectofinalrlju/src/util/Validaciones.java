@@ -1,11 +1,16 @@
 package util;
 
-public class Validaciones {
-    public static boolean esKilometrajeValido(int km) {
-        return km >= 0;
-    }
+import java.sql.*;
 
-    public static boolean esImporteValido(double importe) {
-        return importe > 0;
+public class Validaciones {
+	private static String url = "jdbc:mysql://localhost:3306/practicafinalrlju";
+	private static String user = "root";
+	private static String password = "PracticaRoot";
+
+    public static Connection conectar() throws SQLException, ClassNotFoundException {
+    	
+    	Class.forName("com.mysql.cj.jdbc.Driver");
+    	
+        return DriverManager.getConnection(url, user, password);
     }
 }

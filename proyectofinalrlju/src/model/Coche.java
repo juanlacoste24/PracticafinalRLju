@@ -22,7 +22,7 @@ public class Coche {
  public Coche(int id2, String brand, String model, float consume, int emissions, String imagen) {
 		// TODO Auto-generated constructor stub
 	}
-int getId() { return id; }
+public int getId() { return id; }
     public String getMarca() { return marca; }
     public String getModelo() { return modelo; }
     public String getMatricula() { return matricula; }

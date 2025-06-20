@@ -6,8 +6,10 @@ import model.Usuario;
 import java.util.Scanner;
 
 public class Consola {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
+        UsuarioController usuarioController = new UsuarioController();
+        Usuariovista usuariovista = new Usuariovista(usuarioController);
         boolean exit = false;
 
         while (!exit) {
@@ -26,14 +28,10 @@ public class Consola {
                     String passRegistro = sc.nextLine();
                     
                     Usuario nuevoUsuario = new Usuario(nombreRegistro, passRegistro);
-                    try {
-                        if (UsuarioController.registrarUsuario(nuevoUsuario)) {
-                            System.out.println("Registro exitoso. UUID: " + nuevoUsuario.getUuid());
-                        } else {
-                            System.out.println("Error al registrar usuario.");
-                        }
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
+                    if (UsuarioController.registrarUsuario(nuevoUsuario)) {
+                        System.out.println("Registro exitoso. UUID: " + nuevoUsuario.getUuid());
+                    } else {
+                        System.out.println("Error al registrar usuario.");
                     }
                     break;
 
@@ -43,16 +41,11 @@ public class Consola {
                     System.out.print("Introduce tu contraseña: ");
                     String passLogin = sc.nextLine();
                     
-                    try {
-                        if (UsuarioController.iniciarSesion(nombreLogin, passLogin)) {
-                            System.out.println("Inicio de sesión exitoso. Bienvenido, " + nombreLogin + "!");
-                            Usuariovista.menu();
-                           
-                        } else {
-                            System.out.println("Error al iniciar sesión. Verifica tus credenciales.");
-                        }
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
+                    if (UsuarioController.iniciarSesion(nombreLogin, passLogin)) {
+                        System.out.println("Inicio de sesión exitoso. Bienvenido, " + nombreLogin + "!");
+                        usuariovista.menu(); // Llamamos al menú de la instancia
+                    } else {
+                        System.out.println("Error al iniciar sesión. Verifica tus credenciales.");
                     }
                     break;
 

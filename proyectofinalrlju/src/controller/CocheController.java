@@ -55,10 +55,39 @@ public class CocheController {
         }
         return coches;
     }
- 
 
+    public static boolean actualizarCoche(Coche coche) throws ClassNotFoundException {
+        try (Connection conn = ConexionDB.conectar()) {
+            String sql = "UPDATE coches SET marca = ?, modelo = ?, matricula = ?, anio = ? WHERE id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, coche.getMarca());
+            stmt.setString(2, coche.getModelo());
+            stmt.setString(3, coche.getMatricula());
+            stmt.setInt(4, coche.getAnio());
+            stmt.setInt(5, coche.getId());
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
+    public static boolean eliminarCoche(int cocheId) throws ClassNotFoundException {
+        try (Connection conn = ConexionDB.conectar()) {
+            // Primero eliminar la relación en usuarios_coches
+            String sqlRel = "DELETE FROM usuarios_coches WHERE coche_id = ?";
+            PreparedStatement relStmt = conn.prepareStatement(sqlRel);
+            relStmt.setInt(1, cocheId);
+            relStmt.executeUpdate();
 
-
+            // Luego eliminar el coche
+            String sql = "DELETE FROM coches WHERE id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, cocheId);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
-

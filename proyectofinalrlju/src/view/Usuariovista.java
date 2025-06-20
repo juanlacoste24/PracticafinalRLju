@@ -2,15 +2,15 @@ package view;
 
 import java.util.Scanner;
 import controller.UsuarioController;
-
+ 
 public class Usuariovista {
-    private static UsuarioController controller;
+    private UsuarioController controller; 
 
     public Usuariovista(UsuarioController controller) {
         this.controller = controller;
     }
 
-    public static void menu() {
+    public void menu() throws ClassNotFoundException { 
         Scanner sc = new Scanner(System.in);
         boolean exit = false;
 
@@ -52,18 +52,14 @@ public class Usuariovista {
         sc.close();
     }
 
-    private static void añadirCoche(Scanner sc) {
+    private void añadirCoche(Scanner sc) { 
         System.out.println("Ingrese el nombre del coche:");
         String cocheNombre = sc.nextLine();
-      
-			controller.añadirCoche(cocheNombre);
-		
-		
-		}
-    
+        controller.añadirCoche(cocheNombre);
+    }
 
-    private static void editarCoche(Scanner sc) {
-        System.out.println("Ingrese el índice del coche a editar:");
+    private void editarCoche(Scanner sc) { 
+        System.out.println("Ingrese el nombre del coche a editar:");
         int index = sc.nextInt();
         sc.nextLine();
         System.out.println("Ingrese el nuevo nombre del coche:");
@@ -71,20 +67,20 @@ public class Usuariovista {
         controller.editarCoche(index, nuevoCoche);
     }
 
-    private static void eliminarCoche(Scanner sc) {
-        System.out.println("Ingrese el índice del coche a eliminar:");
+    private void eliminarCoche(Scanner sc) { 
+        System.out.println("Ingrese el nombre del coche a eliminar:");
         int index = sc.nextInt();
         controller.eliminarCoche(index);
     }
 
-    private static void verCoche(Scanner sc) {
-        System.out.println("Ingrese el índice del coche a ver:");
+    private void verCoche(Scanner sc) throws ClassNotFoundException { 
+        System.out.println("Ingrese el ID del coche a ver:");
         int index = sc.nextInt();
         controller.verCoche(index);
     }
 
-    private static void verGastosCoche(Scanner sc) {
-        System.out.println("Ingrese el índice del coche para ver los gastos:");
+    private void verGastosCoche(Scanner sc) { 
+        System.out.println("Ingrese el nombre del coche para ver los gastos:");
         int index = sc.nextInt();
         controller.verGastosCoche(index);
     }
