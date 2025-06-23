@@ -1,6 +1,11 @@
 🚗 Aplicación de Control de Gastos de Coches
+
+
+
 📌 Descripción
-Aplicación desarrollada en Java siguiendo el patrón MVC, que permite a los usuarios gestionar sus coches y registrar gastos asociados como gasolina, revisiones, ITV, etc.
+Aplicación desarrollada en Java, que permite a los usuarios gestionar sus coches y registrar gastos asociados como gasolina, revisiones, ITV, etc.
+
+
 
 🧩 Funcionalidades
 Registro y login de usuarios con ID único.
