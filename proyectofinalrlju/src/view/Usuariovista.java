@@ -142,7 +142,9 @@ public class Usuariovista {
         }
 
         try {
-			controller.verCoche(index);
+			
+			Coche coche = controller.verCoche(index);
+			System.out.print(coche);
 		} catch (ClassNotFoundException e) {
 			
 			e.printStackTrace();
@@ -150,7 +152,7 @@ public class Usuariovista {
     }
     private void verGastosCoche(int index) {
         try {
-            // Obtener el coche
+           
             Coche coche = controller.verCoche(index);
             if (coche == null) {
                 System.out.println("No se encontró el coche con índice: " + index);

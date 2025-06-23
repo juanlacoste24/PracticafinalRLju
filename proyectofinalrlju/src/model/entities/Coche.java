@@ -10,6 +10,11 @@ public class Coche {
     private String matricula;
     private int anio;
     private List<Gasto> gastos;
+    
+    public  String toString() {
+		return modelo+" "+id;
+    }
+    
 
     public Coche(int id, String marca, String modelo, String matricula, int anio) {
         this.id = id;
@@ -19,10 +24,6 @@ public class Coche {
         this.anio = anio;
         this.gastos = new ArrayList<>();
     }
-
-    public Coche(int id2, String marca2, String modelo2, float consume, int id4, String modelo3) {
-		// TODO Auto-generated constructor stub
-	}
 
 	// Getters
     public int getId() { return id; }

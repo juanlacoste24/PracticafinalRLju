@@ -76,13 +76,13 @@ public class CocheController {
 
     public static boolean eliminarCoche(int cocheId) throws ClassNotFoundException {
         try (Connection conn = ConexionDB.conectar()) {
-            // Primero eliminar la relación en usuarios_coches
+          
             String sqlRel = "DELETE FROM usuarios_coches WHERE coche_id = ?";
             PreparedStatement relStmt = conn.prepareStatement(sqlRel);
             relStmt.setInt(1, cocheId);
             relStmt.executeUpdate();
 
-            // Luego eliminar el coche
+        
             String sql = "DELETE FROM coches WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, cocheId);

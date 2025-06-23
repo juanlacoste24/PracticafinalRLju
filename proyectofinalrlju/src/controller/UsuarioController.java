@@ -72,7 +72,7 @@ public class UsuarioController {
                 String modelo = rs.getString("Modelo");
        
                 
-                coche = new Coche(id, marca, modelo, id, id, modelo);
+                coche = new Coche(id, marca, modelo, "", 0);
             }
             
             rs.close(); 

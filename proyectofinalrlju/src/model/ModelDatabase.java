@@ -31,10 +31,7 @@ public class ModelDatabase implements IModel {
 			int id = rs.getInt(1);
 			String brand = rs.getString(2);
 			String model = rs.getString(3);
-			float consume = rs.getFloat(4);
-			int emissions = rs.getInt(5);
-			String imagen = rs.getString(6);
-			Coche coche = new Coche(id, brand, model, consume, emissions, imagen);
+			Coche coche = new Coche(id, brand, model, "", 0);
 			list.add(coche);
 		}
 		return list;
@@ -64,11 +61,8 @@ public class ModelDatabase implements IModel {
 		while (rs.next()) {
 			String brand = rs.getString(1);
 			String model = rs.getString(2);
-			float consume = rs.getFloat(3);
-			int emissions = rs.getInt(4);
-			String imagen = rs.getString(5);
 			if (coche == null)
-				coche = new Coche(id, brand, model, consume, emissions, imagen);
+				coche = new Coche(id, brand, model, "", 0);
 			else {
 				throw new Exception("No puede haber dos coches con el id: " + id);
 			}
@@ -82,9 +76,6 @@ public class ModelDatabase implements IModel {
 
 		ps.setLong(1, modifiedCoche.getId());
 		ps.setString(2, modifiedCoche.getModelo());
-		ps.setFloat(3, modifiedCoche.getConsume());
-		ps.setInt(4, modifiedCoche.getEmissions());
-		ps.setString(5, modifiedCoche.getImagen());
 		ps.setInt(6, modifiedCoche.getId());
 
 		ps.executeUpdate();
